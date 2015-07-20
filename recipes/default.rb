@@ -17,10 +17,12 @@
 # limitations under the License.
 #
 
-cert_key = data_bag_item('w_haproxy','cert')['cert_key']
-
-file node['haproxy']['ssl_crt_path'] do
-  content cert_key
+if node['haproxy']['enable_ssl']
+  cert_key = data_bag_item('w_haproxy','cert')['cert_key']
+  
+  file node['haproxy']['ssl_crt_path'] do
+    content cert_key
+  end
 end
 
 include_recipe	'haproxy::manual'
