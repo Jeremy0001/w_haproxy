@@ -15,4 +15,6 @@ cookbook 'timezone-ii'
 cookbook 'haproxy', git: 'https://github.com/fulloflilies/haproxy.git', ref: '27a1e4646c2a83bb94be3b7b32cd4865f28b010f'
 cookbook 'keepalived'
 
-
+group :wrapper do
+  cookbook 'w_haproxy', path: './'
+end

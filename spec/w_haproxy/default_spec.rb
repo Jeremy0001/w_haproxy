@@ -3,6 +3,7 @@ require_relative '../spec_helper'
 describe 'w_haproxy::default' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
+      node.set['haproxy']['enable_ssl'] = true
       node.set['monit_enabled'] = true
     end.converge(described_recipe)
   end
