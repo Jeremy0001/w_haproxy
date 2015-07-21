@@ -7,7 +7,6 @@ default['haproxy']['source']['use_openssl'] = true
 default['haproxy']['global_options'] = {
   'tune.ssl.default-dh-param' => '2048'
 }
-default['haproxy']['enable_ssl'] = true
 default['haproxy']['ssl_mode'] = 'http'
 default['haproxy']['ssl_crt_path'] = '/etc/ssl/private/examplewebsite.com.pem'
 default['haproxy']['x_forwarded_for'] = true
