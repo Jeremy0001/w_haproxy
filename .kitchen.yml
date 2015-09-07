@@ -3,7 +3,7 @@
 ---
 driver:
   name: vagrant
-   
+
 provisioner:
   name: chef_zero
   environments_path: environments
@@ -12,30 +12,16 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
-    run_list:
-      - recipe[w_common]
-    provisioner:
-      client_rb:
-        environment: testkitchen
   - name: ubuntu-14.04
-    run_list:
-      - recipe[w_common]
-    provisioner:
-      client_rb:
-        environment: testkitchen
 
 suites:
-  - name: test_w_common
-    run_list:
-      - role[w_common_role]
   - name: test_w_haproxy_master
     driver:
       #vm_hostname: "haproxy01"
       network:
         - ["private_network", {ip: "172.31.1.12"}]
     run_list:
-      - role[w_common_role]
-      - role[w_haproxy_role]
+      - recipe[w_haproxy::default]
     attributes: {
      "keepalived": {
        "global": {
@@ -55,7 +41,6 @@ suites:
       network:
         - ["private_network", {ip: "172.31.1.13"}]
     run_list:
-      - role[w_common_role]
       - role[w_haproxy_role]
     attributes: {
      "keepalived": {
@@ -70,44 +55,3 @@ suites:
        }
      }
     }
-  - name: test_w_varnish
-    driver:
-      network:
-        - ["private_network", {ip: "172.31.2.12"}]
-    run_list:
-      - role[w_common_role]
-      - role[w_varnish_role]
-    provisioner:
-      data_bags_path: data_bags
-  - name: test_w_apache
-    driver:
-      network:
-        - ["private_network", {ip: "172.31.3.12"}]
-    run_list:
-      - role[w_common_role]
-      - role[w_apache_role]
-  - name: test_w_memcached
-    driver:
-      network:
-        - ["private_network", {ip: "172.31.4.12"}]
-    run_list:
-      - role[w_common_role]
-      - role[w_memcached_role]
-  - name: test_w_mysql
-    run_list:
-      - role[w_common_role]
-      - role[w_mysql_role]
-  - name: test_w_percona
-    driver:
-      network:
-        - ["private_network", {ip: "172.31.6.12"}]
-    run_list:
-      - role[w_common_role]
-      - role[w_percona_role]
-  - name: test_w_nfs
-    driver:
-      network:
-        - ["private_network", {ip: "172.31.7.12"}]
-    run_list:
-      - role[w_common_role]
-      - role[w_nfs_role]
