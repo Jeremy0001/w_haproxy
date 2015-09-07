@@ -19,7 +19,7 @@
 
 if node['haproxy']['enable_ssl']
   cert_key = data_bag_item('w_haproxy','cert')['cert_key']
-  
+
   file node['haproxy']['ssl_crt_path'] do
     content cert_key
   end
@@ -28,15 +28,11 @@ end
 include_recipe	'haproxy::manual'
 include_recipe  'w_haproxy::keepalived'
 
-firewall 'ufw' do
-  action :enable
-end
+firewall 'default'
 
 [node['haproxy']['incoming_port'], node['haproxy']['ssl_incoming_port'], node['haproxy']['admin']['port']].each do |haproxy_port|
   firewall_rule "listen port #{haproxy_port}" do
     port     haproxy_port
-    protocol :tcp
-    action   :allow
   end
 end
 
