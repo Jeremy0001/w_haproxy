@@ -41,7 +41,7 @@ suites:
       network:
         - ["private_network", {ip: "172.31.1.13"}]
     run_list:
-      - role[w_haproxy_role]
+      - recipe[w_haproxy::default]
     attributes: {
      "keepalived": {
        "global": {
