@@ -9,11 +9,10 @@ describe 'w_haproxy::keepalived' do
 
   describe file('/etc/keepalived/keepalived.conf') do
     it { should be_file }
-  end  
+  end
 
   describe command('iptables-save') do
     its(:stdout) { should match(/COMMIT/) }
-    its(:stdout) { should contain('-A INPUT -p vrrp .*-j ACCEPT') }
+    its(:stdout) { should contain('-A INPUT -p 112 -m comment --comment "vrrp" -j ACCEPT') }
   end
-     
 end

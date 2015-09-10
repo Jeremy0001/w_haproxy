@@ -35,4 +35,5 @@ firewall 'default'
 firewall_rule 'vrrp' do
   provider    Chef::Provider::FirewallRuleIptables
   protocol    112
+  command      :allow
 end

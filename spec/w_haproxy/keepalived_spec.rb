@@ -18,6 +18,6 @@ describe 'w_haproxy::keepalived' do
   end
 
 	it "runs resoruce firewall_rule to allow vrrp protocol" do
-  	expect(chef_run).to create_firewall_rule('vrrp').with(provider: Chef::Provider::FirewallRuleIptables, protocol: 112)
+  	expect(chef_run).to create_firewall_rule('vrrp').with(provider: Chef::Provider::FirewallRuleIptables, protocol: 112, command: :allow)
   end
 end

@@ -17,5 +17,7 @@ default['haproxy']['httpchk'] = '/varnishhealthcheck'
 default['haproxy']['ssl_httpchk'] = '/varnishhealthcheck'
 default['haproxy']['member_max_connections'] = 10000
 
+#firewall cookbook needs following attribute to configure iptables in ubuntu
+default['firewall']['ubuntu_iptables'] = true
 default['keepalived']['shared_address'] = true
 default['keepalived']['instances']['vi_1']['interface'] = 'eth0'
