@@ -16,11 +16,12 @@ platforms:
 
 suites:
   - name: test_w_haproxy_master
-    driver:
+    #driver:
       #vm_hostname: "haproxy01"
-      network:
-        - ["private_network", {ip: "172.31.1.12"}]
+      #network:
+      #  - ["private_network", {ip: "172.31.1.12"}]
     run_list:
+      - recipe[w_common::default]
       - recipe[w_haproxy::default]
     attributes: {
      "keepalived": {
@@ -36,12 +37,12 @@ suites:
      }
     }
   - name: test_w_haproxy_backup
-    driver:
+    #driver:
       #vm_hostname: "haproxy02"
-      network:
-        - ["private_network", {ip: "172.31.1.13"}]
+      #network:
+      #  - ["private_network", {ip: "172.31.1.13"}]
     run_list:
-      - role[w_haproxy_role]
+      - recipe[w_haproxy::default]
     attributes: {
      "keepalived": {
        "global": {
