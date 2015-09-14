@@ -26,14 +26,21 @@ if node['haproxy']['enable_ssl']
 end
 
 include_recipe	'haproxy::manual'
-include_recipe  'w_haproxy::keepalived'
 
-firewall 'default'
+include_recipe 'firewall'
 
 [node['haproxy']['incoming_port'], node['haproxy']['ssl_incoming_port'], node['haproxy']['admin']['port']].each do |haproxy_port|
   firewall_rule "listen port #{haproxy_port}" do
     port     haproxy_port
   end
+end
+
+include_recipe  'w_haproxy::keepalived'
+
+firewall_rule 'vrrp' do
+  provider    Chef::Provider::FirewallRuleIptables
+  protocol    112
+  command      :allow
 end
 
 include_recipe 'w_haproxy::monit' if node['monit_enabled']

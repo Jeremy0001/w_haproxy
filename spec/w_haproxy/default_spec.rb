@@ -24,14 +24,22 @@ describe 'w_haproxy::default' do
     expect(chef_run).to create_haproxy_config('Create haproxy.cfg')
   end
 
-  it 'enables firewall' do
-  	expect(chef_run).to install_firewall('default')
+  it 'runs recipe firewall::default' do
+    expect(chef_run).to include_recipe('firewall::default')
   end
 
   [80, 443, 22002].each do |listen_port|
   	it "runs resoruce firewall_rule to open port #{listen_port}" do
     	expect(chef_run).to create_firewall_rule("listen port #{listen_port}").with(port: listen_port)
     end
+  end
+
+  it 'runs recipe w_haproxy::keepalived' do
+    expect(chef_run).to include_recipe('w_haproxy::keepalived')
+  end
+
+  it "runs resoruce firewall_rule to allow vrrp protocol" do
+    expect(chef_run).to create_firewall_rule('vrrp').with(provider: Chef::Provider::FirewallRuleIptables, protocol: 112, command: :allow)
   end
 
   it 'runs recipe w_haproxy::monit' do

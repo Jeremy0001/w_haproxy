@@ -7,6 +7,7 @@ default['haproxy']['source']['use_openssl'] = true
 default['haproxy']['global_options'] = {
   'tune.ssl.default-dh-param' => '2048'
 }
+default['haproxy']['enable_ssl'] = false
 default['haproxy']['ssl_mode'] = 'http'
 default['haproxy']['ssl_crt_path'] = '/etc/ssl/private/examplewebsite.com.pem'
 default['haproxy']['x_forwarded_for'] = true
@@ -21,3 +22,15 @@ default['haproxy']['member_max_connections'] = 10000
 default['firewall']['ubuntu_iptables'] = true
 default['keepalived']['shared_address'] = true
 default['keepalived']['instances']['vi_1']['interface'] = 'eth0'
+
+default['monit_enabled'] = true
+default['monit']['default_monitrc_configs'] = ['ssh']
+default['monit']['alert_ignore_events'] = ['action', 'instance', 'pid', 'ppid']
+default['monit']['alert_email'] = ''
+default['monit']['alert_email'] = 'alert@example.com'
+default['monit']['mail']['hostname'] = 'localhost'
+default['monit']['mail']['port'] = '587'
+default['monit']['mail']['security'] = 'TLSV1'
+default['monit']['mail']['from'] = 'monit@example.com'
+default['monit']['mail']['username'] = 'alert@example.com'
+default['monit']['mail']['password'] = 'alert_password'
