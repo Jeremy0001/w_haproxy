@@ -9,7 +9,7 @@ describe 'w_haproxy::default' do
 
   describe file('/usr/local/etc/haproxy/haproxy.cfg') do
     it { should be_file }
-  end  
+  end
 
   describe port(80) do
     it { should be_listening }
@@ -21,5 +21,6 @@ describe 'w_haproxy::default' do
 
   describe port(22002) do
     it { should be_listening }
-  end    
+  end
+
 end

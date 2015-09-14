@@ -45,4 +45,8 @@ describe 'w_haproxy::default' do
   it 'runs recipe w_haproxy::monit' do
     expect(chef_run).to include_recipe('w_haproxy::monit')
   end
+
+  it 'runs resource firewall_rule to open port 2812' do
+    expect(chef_run).to create_firewall_rule('monit httpd').with(port: 2812)
+  end
 end
