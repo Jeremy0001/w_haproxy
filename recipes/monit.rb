@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: w_varnish
+# Cookbook Name:: w_haproxy
 # Recipe:: monit
 #
 
