@@ -16,23 +16,26 @@ platforms:
 
 suites:
   - name: test_w_haproxy_master
-    #driver:
-      #vm_hostname: "haproxy01"
-      #network:
-      #  - ["private_network", {ip: "172.31.1.12"}]
+    driver:
+      vm_hostname: "haproxy01"
+      network:
+        - ["private_network", {ip: "172.31.1.12"}]
     run_list:
       - recipe[w_common::default]
       - recipe[w_haproxy::default]
     attributes: {
+     "haproxy": {
+      "enable_ssl": true
+     },
      "keepalived": {
        "global": {
         "router_id": "haproxy01"
        },
        "instances": {
-        "vi_1": {
-          "priorities": "101",
-          "interface": "eth1"
-        }
+         "vi_1": {
+           "priorities": "101",
+           "interface": "eth1"
+         }
        }
      }
     }

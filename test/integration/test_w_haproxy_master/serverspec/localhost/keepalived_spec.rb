@@ -13,6 +13,6 @@ describe 'w_haproxy::keepalived' do
 
   describe command('iptables-save') do
     its(:stdout) { should match(/COMMIT/) }
-    its(:stdout) { should contain('-A INPUT -p 112 -m comment --comment "vrrp" -j ACCEPT') }
+    its(:stdout) { should contain('-A INPUT -p vrrp -m comment --comment vrrp -j ACCEPT') }
   end
 end

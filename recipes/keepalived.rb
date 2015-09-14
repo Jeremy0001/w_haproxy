@@ -29,11 +29,3 @@ node.default[:keepalived][:instances][:vi_1] = {
 #  action :append
 #  unique true
 #end
-
-firewall 'default'
-
-firewall_rule 'vrrp' do
-  provider    Chef::Provider::FirewallRuleIptables
-  protocol    112
-  command      :allow
-end
