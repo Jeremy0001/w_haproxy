@@ -44,3 +44,7 @@ firewall_rule 'vrrp' do
 end
 
 include_recipe 'w_haproxy::monit' if node['monit_enabled']
+
+firewall_rule 'monit httpd' do
+  port    2812
+end
