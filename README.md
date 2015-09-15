@@ -1,46 +1,24 @@
+[![Build Status](https://travis-ci.org/haapp/w_haproxy.svg?branch=master)](https://travis-ci.org/haapp/w_haproxy)
+
 w_haproxy Cookbook
 ==================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+Install and configure HAProxy, Keepalived and monit. Expects high availability usecase that 2 HAProxy virtual machine to be configured as master and slave sharing one virtual ip thanks to Keepalived.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+Cookbook Dependency:
+* [haapp/w_common](https://github.com/haapp/w_common) 
+* [hw-cookbooks/haproxy](https://github.com/hw-cookbooks/haproxy) 
+* [chef-cookbooks/keepalived](https://github.com/chef-cookbooks/keepalived)
 
-e.g.
-#### packages
-- `toaster` - w_haproxy needs toaster to brown your bagel.
-
-Attributes
-----------
-TODO: List your cookbook attributes here.
-
-e.g.
-#### w_haproxy::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['w_haproxy']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+Supported Platform:
+Ubuntu 14.04, Ubuntu 12.04
 
 Usage
 -----
 #### w_haproxy::default
-TODO: Write usage instructions for each cookbook.
 
-e.g.
-Just include `w_haproxy` in your node's `run_list`:
+Include `w_haproxy` in your node/role's `run_list`:
 
 ```json
 {
@@ -53,16 +31,23 @@ Just include `w_haproxy` in your node's `run_list`:
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+3. Install reqired gems
+```
+bundle install
+```
+4. Write your change
+5. Write tests for your change (if applicable)
+6. Run the tests, ensuring they all pass
+```
+bundle exec rspec
+bundle exec kithen test
+```
+7. Submit a Pull Request using Github
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: 
+* Joel Handwell @joelhandwell 
+* Full Of Lilies @fulloflilies
