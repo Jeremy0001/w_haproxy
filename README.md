@@ -1,7 +1,8 @@
-[![Build Status](https://travis-ci.org/haapp/w_haproxy.svg?branch=master)](https://travis-ci.org/haapp/w_haproxy)
-
 w_haproxy Cookbook
 ==================
+
+[![Build Status](https://travis-ci.org/haapp/w_haproxy.svg?branch=master)](https://travis-ci.org/haapp/w_haproxy)
+
 Install and configure HAProxy, Keepalived and monit. Expects high availability usecase that 2 HAProxy virtual machine to be configured as master and slave sharing one virtual ip thanks to Keepalived.
 
 Requirements
