@@ -1,0 +1,6 @@
+[submodule "test/integration/test_w_haproxy_master"]
+	path = test/integration/test_w_haproxy_master
+	url = https://github.com/haapp/serverspec-w_haproxy.git
+[submodule "test/integration/test_w_haproxy_backup"]
+	path = test/integration/test_w_haproxy_backup
+	url = https://github.com/haapp/serverspec-w_haproxy.git
